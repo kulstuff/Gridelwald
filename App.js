@@ -1,5 +1,6 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
+const schema = require('./schema/schema.js')
 const keys = require('./config/keys.js');
 const mongoose = require('mongoose');
 
@@ -11,6 +12,7 @@ mongoose.connection.once('open', () => {
 });
 
 app.use('/graphql', graphqlHTTP({
+    schema,
     graphiql: true
 }));
 
